@@ -3,16 +3,22 @@
          Clone this package from git://github.com/rtv/universe.git
          version 2
          Richard Vaughan
+
+         modified by Anton Samson (https://github.com/antsam/universe)
 ****/
 
+#ifndef UNIVERSE_H
+#define UNIVERSE_H
+
+// we really should be using the C++ equivalents of these C headers if possible
 #include <vector>
-#include <math.h>
-#include <stdio.h>
-#include <stdlib.h>
+#include <cmath>
+#include <cstdio>
+#include <cstdlib>
 #include <stdint.h>
-#include <string.h>
+#include <cstring>
 #include <getopt.h>
-#include <time.h>
+#include <ctime>
 
 #define GRAPHICS 1
 
@@ -20,7 +26,6 @@
 // each item in a collection C.
 #define VAR(V,init) __typeof(init) V=(init)
 #define FOR_EACH(I,C) for(VAR(I,(C).begin());I!=(C).end();I++)
-
 
 namespace Uni
 {
@@ -34,6 +39,8 @@ namespace Uni
 
     /** Start running the simulation. Does not return. */
     void Run();
+
+    //void DrawQuad();
 
     extern uint64_t updates; // number of simulation steps so far
     extern uint64_t updates_max; // number of steps to run before quitting (0 means infinity)
@@ -62,7 +69,7 @@ namespace Uni
         std::vector<Pixel> pixels; // sensor array
 
         // default constructor
-        Robot( void );
+        Robot();
 
         // default destructor
          ~Robot() {}
@@ -119,3 +126,6 @@ namespace Uni
     }
 
 }; // namespace Uni
+
+#endif // UNIVERSE_H
+
