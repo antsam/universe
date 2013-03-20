@@ -3,8 +3,12 @@ Universe
 
 A simple n-body simulator for exploring distributed systems.
 
-Author: Richard Vaughan 2013.
+Original Author: Richard Vaughan 2013.
 License: GNU GPL v3 or later (applies to all files in this repo).
+
+Modified to use QuadTrees by Anton Samson. The next iteration makes
+use of Spatial Hashing and multi-threading and may be pushed
+after the semester ends.
 
 ## Pre-requirements
 
@@ -28,7 +32,7 @@ Needs XCode command-line tools.
 
 ```bash
 [in code directory]
-cmake .
 make
 ```
 
+The Make script is a wrapper around [CMake](http://www.cmake.org/). 

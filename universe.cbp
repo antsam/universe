@@ -27,6 +27,14 @@
 					<Add option="-s" />
 				</Linker>
 			</Target>
+			<Target title="tests">
+				<Option output="universe" prefix_auto="1" extension_auto="1" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add directory="." />
+				</Compiler>
+			</Target>
 		</Build>
 		<Compiler>
 			<Add option="-Wall" />
@@ -36,9 +44,17 @@
 			<Add library="GL" />
 			<Add library="glut" />
 		</Linker>
-		<Unit filename="src/controller.cc" />
+		<Unit filename="src/QuadTree.cpp" />
+		<Unit filename="src/QuadTree.h" />
+		<Unit filename="src/controller.cc">
+			<Option target="Debug" />
+			<Option target="Release" />
+		</Unit>
 		<Unit filename="src/universe.cc" />
 		<Unit filename="src/universe.h" />
+		<Unit filename="tests/tests.cpp">
+			<Option target="tests" />
+		</Unit>
 		<Extensions>
 			<code_completion />
 			<debugger />

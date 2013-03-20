@@ -1,8 +1,9 @@
 cmake_minimum_required(VERSION 2.6)
 project(universe)
 
-set(universe_HEADERS src/universe.h)
-set(universe_SOURCES src/universe.cc src/controller.cc)
+set(universe_HEADERS src/universe.h src/QuadTree.h)
+set(universe_SOURCES src/universe.cc src/controller.cc src/QuadTree.cpp)
+set(test_SOURCES src/universe.cc src/QuadTree.cpp tests/tests.cpp)
 
 list (APPEND REQ_LIBS "")
 
@@ -35,6 +36,8 @@ if (NOT ${OPENGL_GLU_FOUND} STREQUAL "YES")
 	message( FATAL_ERROR "GLU not found" )
 endif (NOT ${OPENGL_GLU_FOUND} STREQUAL "YES")
 
+set(CMAKE_CXX_FLAGS "-g -Wall -O3")
+
 message (STATUS "Found OpenGL in ${OPENGL_INCLUDE_DIR}")
 message (STATUS "  OPENGL_LIBRARIES   ${OPENGL_LIBRARIES}")
 message (STATUS "  OPENGL_gl_LIBRARY  ${OPENGL_gl_LIBRARY}")
@@ -47,7 +50,17 @@ add_executable(universe
     ${universe_SOURCES}
 )
 
+add_executable(test
+    EXCLUDE_FROM_ALL
+    ${universe_HEADERS}
+    ${test_SOURCES}
+)
+add_test(test test)
+
 link_directories(${GLUT_LIBRARY_DIRS} ${OpenGL_LIBRARY_DIRS})
 add_definitions(${GLUT_DEFINITIONS} ${OpenGL_DEFINITIONS})
 
 target_link_libraries(universe  ${REQ_LIBS})
+target_link_libraries(test      ${REQ_LIBS})
+
+set_target_properties(test PROPERTIES COMPILE_FLAGS "-I.")
